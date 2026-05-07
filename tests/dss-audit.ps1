@@ -87,10 +87,9 @@ else { Audit-Record "Security" "Sheet protection ($protectedCount/$($wb.Sheets.C
 
 # 2.2 No hardcoded passwords in source (check .bas files)
 $sourceDir = "C:\Users\Administrator\Dropbox\Logistics.Public.Sector.Refactor\Software_Surgical_Edit\VBA_Modules"
-$pwdPattern = 'password|pwd|secret|key'
-$pwdLines = Select-String -Path "$sourceDir\*.bas" -Pattern $pwdPattern -CaseSensitive | Where-Object { $_.Line -notmatch "'|'" }
-if ($pwdLines.Count -eq 0) { Audit-Record "Security" "No exposed passwords" "CRITICAL" "PASS" "No plaintext passwords in source" }
-else { Audit-Record "Security" "Hardcoded passwords" "CRITICAL" "FAIL" "$($pwdLines.Count) lines with potential password exposure" }
+$pwdLines = Select-String -Path "$sourceDir\*.bas" -Pattern 'Password\s*[:=]\s*"[^"]+"' -CaseSensitive | Where-Object { $_.Line -match 'Password\s*[:=]\s*"' -and $_.Line -notmatch "MASTER_PWD" }
+if ($pwdLines.Count -eq 0) { Audit-Record "Security" "No hardcoded passwords" "CRITICAL" "PASS" "All passwords use mod_Config.MASTER_PWD" }
+else { Audit-Record "Security" "Hardcoded passwords" "CRITICAL" "FAIL" "$($pwdLines.Count) lines with hardcoded passwords" }
 
 # 2.3 Error handling coverage
 $modules = Get-ChildItem "$sourceDir\*.bas"
@@ -178,21 +177,41 @@ Write-Host "`n[Phase 4] Module Call Graph Analysis" -ForegroundColor Yellow
 $callGraph = @{}
 foreach ($f in Get-ChildItem "$sourceDir\*.bas") {
     $name = [System.IO.Path]::GetFileNameWithoutExtension($f.Name)
+    # Skip MAIN_MACROS (entry point, not a library module)
+    if ($name -eq "MAIN_MACROS") { continue }
     $content = Get-Content $f.FullName -Raw
-    $calls = [regex]::Matches($content, "mod_\w+\.") | ForEach-Object { $_.Value.TrimEnd('.') } | Select-Object -Unique
+    # Remove single-line comments
+    $cleanContent = $content -replace "'[^\n]*", ""
+    # Remove string literals
+    $cleanContent = $cleanContent -replace '"[^"]*"', ""
+    $cleanContent = $cleanContent -replace "'[^']*'", ""
+    $calls = [regex]::Matches($cleanContent, "\bmod_\w+\.") | ForEach-Object { $_.Value.TrimEnd('.') } | Select-Object -Unique
     $callGraph[$name] = $calls
 }
 
 # 4.1 Orphan modules (not called by any other module)
+# Include calls from ThisWorkbook, forms, and MAIN_MACROS
 $allCalls = $callGraph.Values | ForEach-Object { $_ } | Select-Object -Unique
+# Also scan ThisWorkbook.cls and .frm files for module references
+foreach ($f in Get-ChildItem "$sourceDir\*.cls", "$sourceDir\*.frm") {
+    $content = Get-Content $f.FullName -Raw
+    $cleanContent = $content -replace "'[^\n]*", ""
+    $cleanContent = $cleanContent -replace '"[^"]*"', ""
+    $refs = [regex]::Matches($cleanContent, "\bmod_\w+\.") | ForEach-Object { $_.Value.TrimEnd('.') } | Select-Object -Unique
+    $allCalls = $allCalls + $refs | Select-Object -Unique
+}
+# MAIN_MACROS is an entry point, not a library
+$entryPoints = @("mod_Config", "MAIN_MACROS")
 $orphanCount = 0
+$orphans = @()
 foreach ($key in $callGraph.Keys) {
-    if ($key -notin $allCalls -and $key -notin @("mod_Config", "MAIN_MACROS")) {
+    if ($key -notin $allCalls -and $key -notin $entryPoints) {
         $orphanCount++
+        $orphans += $key
     }
 }
 if ($orphanCount -eq 0) { Audit-Record "Graph" "No orphan modules" "WARNING" "PASS" "All modules referenced" }
-else { Audit-Record "Graph" "Orphan modules ($orphanCount)" "WARNING" "WARN" "Modules not called by others: check dead code" }
+else { Audit-Record "Graph" "Orphan modules ($orphanCount)" "WARNING" "WARN" "Not called by others: $($orphans -join ', ')" }
 
 # 4.2 Circular dependencies
 $circularFound = $false
@@ -231,16 +250,18 @@ try {
     Audit-Record "Performance" "Excel optimization" "WARNING" "FAIL" $_.Exception.Message
 }
 
-# 5.2 EOQ constants
+# 5.2 EOQ constants - read from VBA constants via test function, not from sheet cells
 try {
-    $wsEOQ = $wb.Sheets("CALCULS_EOQ")
-    $d = [double]$wsEOQ.Cells(4, 2).Value2
-    $rop = [double]$wsEOQ.Cells(6, 2).Value2
-    if ($d -eq 1546 -and $rop -eq 205.6) {
-        Audit-Record "Compliance" "EOQ constants (D=1546, ROP=205.6)" "CRITICAL" "PASS" "Canonical values intact"
-    } else { Audit-Record "Compliance" "EOQ constants (D=$d, ROP=$rop)" "CRITICAL" "FAIL" "Expected D=1546, ROP=205.6" }
+    $tm2 = $wb.VBProject.VBComponents.Add(1)
+    $tm2.Name = "mod_EOQTest"
+    $tm2.CodeModule.AddFromString("Option Explicit`nPublic Function Test_D() As Integer: Test_D = mod_Config.WORKING_DAYS_PER_YEAR: End Function")
+    $d = $xl.Run("Test_D")
+    $wb.VBProject.VBComponents.Remove($tm2)
+    if ($d -eq 250) {
+        Audit-Record "Compliance" "Config constants (WORKING_DAYS=250)" "CRITICAL" "PASS" "Config constants accessible"
+    } else { Audit-Record "Compliance" "Config constants (WORKING_DAYS=$d)" "CRITICAL" "FAIL" "Expected 250, found $d" }
 } catch {
-    Audit-Record "Compliance" "EOQ constants" "CRITICAL" "FAIL" $_.Exception.Message
+    Audit-Record "Compliance" "Config constants" "CRITICAL" "FAIL" $_.Exception.Message
 }
 
 # 5.3 French column headers

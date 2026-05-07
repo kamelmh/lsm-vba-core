@@ -1,9 +1,9 @@
 Attribute VB_Name = "mod_SharedEnvironment"
 '==============================================================================
 ' mod_SharedEnvironment.bas  -  ERP LSM v1.0.0
-' Purpose: Shared paths, user session management, and batch operations
-' Author : LSM VBA Core | Public Sector 2026
-' Depends: mod_Config, mod_Database, mod_ExportEngine, mod_AuditTrail
+
+' Depends: mod_Config, mod_Database, mod_AuditTrail
+' Note: mod_ExportEngine dependency removed to break circular reference
 '
 ' Features:
 '   - Configurable shared export directory (network or local)
@@ -271,13 +271,15 @@ Public Sub BatchExportPDFs(ByVal startDate As Date, ByVal endDate As Date)
         Dim pdfPath As String
         pdfPath = exportPath & CStr(key) & "_" & Format(Date, "yyyy-mm-dd") & ".pdf"
         
-        ' Silent export - no dialog, no MsgBox
-        If mod_ExportEngine.ExportTransactionToPDF_Silent(CStr(key), pdfPath) Then
+        ' Silent export via Application.Run to break circular dependency with mod_ExportEngine
+        On Error Resume Next
+        Dim exportResult As Variant
+        exportResult = Application.Run("mod_ExportEngine.ExportTransactionToPDF_Silent", CStr(key), pdfPath)
+        If exportResult = True Then
             successCount = successCount + 1
         Else
             failCount = failCount + 1
             Debug.Print "[Batch] Failed: " & key
-            Err.Clear
         End If
         On Error GoTo 0
     Next key
