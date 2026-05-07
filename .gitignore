@@ -1,0 +1,30 @@
+# Excel temp files
+~$*.xls*
+*.tmp
+*.xlk
+
+# Build output
+*.xlsm
+*.xlam
+Output.xlsm
+ERP_*.xlsm
+
+# IDE
+.vs/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+vbe-auto.log
+
+# State files
+vbe-auto.state.json
+
+# Personal data (never commit)
+erp-project-context.xml
+erp-admin-paths.xml
+*.xlsx

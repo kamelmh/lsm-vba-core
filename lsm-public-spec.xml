@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PublicLSMBuild version="1.0" date="2026-05-07">
+  <Name>LSM VBA Core</Name>
+  <Description>Generic Logistics &amp; Stock Management framework in pure VBA. Reusable toolkit for building inventory management systems in Excel.</Description>
+  <License>MIT</License>
+  <GitHub>anomalyco/lsm-vba-core</GitHub>
+
+  <Included>
+    <Category name="Core Engine">
+      <Module>mod_Config.bas</Module>
+      <Module>mod_StockEngine.bas</Module>
+      <Module>mod_StockEntry_Logic.bas</Module>
+      <Module>mod_Database.bas</Module>
+      <Module>mod_TransactionSafety.bas</Module>
+    </Category>
+    <Category name="Analytics">
+      <Module>mod_SyncBridge.bas</Module>
+      <Module>mod_Forecasting.bas</Module>
+      <Module>mod_Dashboard.bas</Module>
+      <Module>mod_Reports.bas</Module>
+      <Module>mod_ExportEngine.bas</Module>
+    </Category>
+    <Category name="UI Framework">
+      <Module>mod_ThemingEngine.bas</Module>
+      <Module>mod_UIEnhancements.bas</Module>
+      <Module>mod_Navigation.bas</Module>
+      <Module>mod_Localization.bas</Module>
+      <Module>frmStockEntry.frm</Module>
+    </Category>
+    <Category name="Utilities">
+      <Module>mod_Utilities.bas</Module>
+      <Module>mod_SheetSetup.bas</Module>
+      <Module>mod_SharedEnvironment.bas</Module>
+      <Module>mod_AuditTrail.bas</Module>
+      <Module>mod_ApprovalWorkflow.bas</Module>
+      <Module>mod_QRCode.bas</Module>
+      <Module>mod_ReceiptTag.bas</Module>
+    </Category>
+    <Category name="Build Tools">
+      <Module>build.ps1</Module>
+      <Module>verify.ps1</Module>
+      <Module>vbe.ps1</Module>
+      <Module>test-macros.ps1</Module>
+      <Module>dss-audit.ps1</Module>
+    </Category>
+  </Included>
+
+  <Excluded>
+    <Reason>Sensitive or project-specific</Reason>
+    <Module>mod_Budget.bas</Module>
+    <Module>mod_BudgetSetup.bas</Module>
+    <Module>mod_DemoData.bas</Module>
+    <Module>mod_SupplierRegistry.bas</Module>
+    <Module>mod_Procurement.bas</Module>
+    <Module>MAIN_MACROS.bas</Module>
+    <Module>mod_UI_Setup.bas</Module>
+    <Module>ThisWorkbook.cls</Module>
+    <Document>ERP_Academie_v13_Master.xlsm</Document>
+    <Document>ERP_Academie_v13_2.xlsm</Document>
+  </Excluded>
+
+  <Stripped>
+    <Item>All hardcoded passwords (replaced with placeholder)</Item>
+    <Item>Specific article names and descriptions</Item>
+    <Item>Supplier names and contact info</Item>
+    <Item>Thesis content and personal data</Item>
+    <Item>CNEPD-specific identifiers</Item>
+    <Item>Arabic UI strings (kept as English placeholders)</Item>
+  </Stripped>
+</PublicLSMBuild>
