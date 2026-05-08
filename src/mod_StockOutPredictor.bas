@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "mod_StockOutPredictor"
+Attribute VB_Name = "mod_StockOutPredictor"
 Option Explicit
 
 Private Const SHEET_STOCKOUT As String = "PREVISION_RUPTURE"

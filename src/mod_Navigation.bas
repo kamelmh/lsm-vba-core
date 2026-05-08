@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "mod_Navigation"
+Attribute VB_Name = "mod_Navigation"
 '==============================================================================
 ' modNavigation.bas - ERP LSM v1.0.0
 ' Sheet navigation and form launching

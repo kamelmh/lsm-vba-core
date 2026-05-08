@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "mod_DataValidator"
+Attribute VB_Name = "mod_DataValidator"
 Option Explicit
 
 Private Const SHEET_VALIDATION As String = "VALIDATION_INTEGRITE"

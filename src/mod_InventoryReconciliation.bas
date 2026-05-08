@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "mod_InventoryReconciliation"
+Attribute VB_Name = "mod_InventoryReconciliation"
 Option Explicit
 
 Private Const SHEET_INVENTAIRE As String = "INVENTAIRE"

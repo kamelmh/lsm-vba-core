@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "mod_Config"
+Attribute VB_Name = "mod_Config"
 Option Explicit
 
 ' Sheet names

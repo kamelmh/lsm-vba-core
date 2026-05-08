@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "mod_SheetSetup"
+Attribute VB_Name = "mod_SheetSetup"
 Option Explicit
 
 ' Sheet protection password delegated to mod_Config.MASTER_PWD

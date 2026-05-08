@@ -20,7 +20,7 @@ $includeFiles = @(
     "mod_Reports.bas",
     "mod_ExportEngine.bas",
     "mod_ThemingEngine.bas",
-    "mod_UIEnhancements.bas",
+    "mod_UI_Setup.bas",
     "mod_Navigation.bas",
     "mod_Localization.bas",
     "mod_Utilities.bas",

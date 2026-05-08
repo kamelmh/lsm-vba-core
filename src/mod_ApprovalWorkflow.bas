@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "mod_ApprovalWorkflow"
+Attribute VB_Name = "mod_ApprovalWorkflow"
 ' Public Sector PUBLIC SECTOR FIX: 3-Step Approval Workflow
 ' Algerian Directorate of Education approval chain
 

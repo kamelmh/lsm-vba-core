@@ -1,4 +1,4 @@
-﻿VERSION 5.00
+VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} frmStockEntry 
    Caption         =   "UserForm1"
    ClientHeight    =   3015
@@ -164,7 +164,7 @@ Private Sub BuildUI()
         .Height = 24
         .Font.Size = 9
         .Font.name = "Tahoma"
-        .Style = fmStyleDropDownList
+        .Style = fmStyleDropDownCombo
     End With
     
     '--------------------------------------------------------------------------
@@ -705,6 +705,58 @@ End Sub
 ' KEYBOARD SHORTCUTS
 '==============================================================================
 
+'==============================================================================
+' FOCUS EVENTS — highlight active input
+'==============================================================================
+Private Sub TxtDate_Enter()
+    Call mod_ThemingEngine.ApplyInputFocus(Me.Controls("TxtDate"))
+End Sub
+Private Sub TxtDate_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Call mod_ThemingEngine.ApplyInputBlur(Me.Controls("TxtDate"))
+End Sub
+Private Sub txtRefDoc_Enter()
+    Call mod_ThemingEngine.ApplyInputFocus(Me.Controls("txtRefDoc"))
+End Sub
+Private Sub txtRefDoc_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Call mod_ThemingEngine.ApplyInputBlur(Me.Controls("txtRefDoc"))
+End Sub
+Private Sub txtQuantite_Enter()
+    Call mod_ThemingEngine.ApplyInputFocus(Me.Controls("txtQuantite"))
+End Sub
+Private Sub txtQuantite_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Call mod_ThemingEngine.ApplyInputBlur(Me.Controls("txtQuantite"))
+End Sub
+Private Sub txtPrixUnitaire_Enter()
+    Call mod_ThemingEngine.ApplyInputFocus(Me.Controls("txtPrixUnitaire"))
+End Sub
+Private Sub txtPrixUnitaire_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Call mod_ThemingEngine.ApplyInputBlur(Me.Controls("txtPrixUnitaire"))
+End Sub
+Private Sub cmbTypeDoc_Enter()
+    Call mod_ThemingEngine.ApplyInputFocus(Me.Controls("cmbTypeDoc"))
+End Sub
+Private Sub cmbTypeDoc_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Call mod_ThemingEngine.ApplyInputBlur(Me.Controls("cmbTypeDoc"))
+End Sub
+Private Sub cmbArticle_Enter()
+    Call mod_ThemingEngine.ApplyInputFocus(Me.Controls("cmbArticle"))
+End Sub
+Private Sub cmbArticle_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Call mod_ThemingEngine.ApplyInputBlur(Me.Controls("cmbArticle"))
+End Sub
+Private Sub cmbService_Enter()
+    Call mod_ThemingEngine.ApplyInputFocus(Me.Controls("cmbService"))
+End Sub
+Private Sub cmbService_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Call mod_ThemingEngine.ApplyInputBlur(Me.Controls("cmbService"))
+End Sub
+Private Sub cmbCategorie_Enter()
+    Call mod_ThemingEngine.ApplyInputFocus(Me.Controls("cmbCategorie"))
+End Sub
+Private Sub cmbCategorie_Exit(ByVal Cancel As MSForms.ReturnBoolean)
+    Call mod_ThemingEngine.ApplyInputBlur(Me.Controls("cmbCategorie"))
+End Sub
+
 Private Sub UserForm_KeyDown(ByVal KeyCode As MSForms.ReturnInteger, _
                               ByVal Shift As Integer)
     Select Case KeyCode
@@ -721,8 +773,55 @@ Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
 End Sub
 
 '==============================================================================
-' END -- frmStockEntry.frm (Programmatic Controls - 450 lines)
-' All business logic in mod_StockEntry_Logic.bas (996 lines)
+' HOVER EFFECTS - Button MouseMove handlers
+'==============================================================================
+
+Private Sub btnEn[ARTICLE_DESC]r_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+    HoverButton Me.Controls("btnEn[ARTICLE_DESC]r"), RGB(51, 153, 238), RGB(255, 255, 255)
+End Sub
+
+Private Sub btnAjouterLigne_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+    HoverButton Me.Controls("btnAjouterLigne"), RGB(200, 230, 200), RGB(20, 90, 40)
+End Sub
+
+Private Sub btnSupprimerLigne_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+    HoverButton Me.Controls("btnSupprimerLigne"), RGB(255, 200, 200), RGB(160, 20, 20)
+End Sub
+
+Private Sub btnAnnuler_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+    HoverButton Me.Controls("btnAnnuler"), RGB(220, 220, 225), RGB(30, 30, 30)
+End Sub
+
+Private Sub btnAutoRef_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+    HoverButton Me.Controls("btnAutoRef"), RGB(220, 220, 225), RGB(30, 30, 30)
+End Sub
+
+Private Sub btnImprimer_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+    HoverButton Me.Controls("btnImprimer"), RGB(220, 220, 225), RGB(30, 30, 30)
+End Sub
+
+Private Sub UserForm_MouseMove(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+    ResetButtonHover Me.Controls("btnEn[ARTICLE_DESC]r"), RGB(0, 102, 204), RGB(255, 255, 255)
+    ResetButtonHover Me.Controls("btnAjouterLigne"), RGB(232, 245, 233), RGB(32, 120, 60)
+    ResetButtonHover Me.Controls("btnSupprimerLigne"), RGB(252, 228, 236), RGB(192, 32, 32)
+    ResetButtonHover Me.Controls("btnAnnuler"), RGB(245, 245, 250), RGB(51, 51, 51)
+    ResetButtonHover Me.Controls("btnAutoRef"), RGB(245, 245, 250), RGB(51, 51, 51)
+    ResetButtonHover Me.Controls("btnImprimer"), RGB(245, 245, 250), RGB(51, 51, 51)
+End Sub
+
+Private Sub HoverButton(ByRef ctrl As Object, ByVal hoverBg As Long, ByVal hoverFg As Long)
+    ctrl.BackColor = hoverBg
+    ctrl.ForeColor = hoverFg
+End Sub
+
+Private Sub ResetButtonHover(ByRef ctrl As Object, ByVal origBg As Long, ByVal origFg As Long)
+    ctrl.BackColor = origBg
+    ctrl.ForeColor = origFg
+End Sub
+
+'==============================================================================
+' END -- frmStockEntry.frm
+' All business logic in mod_StockEntry_Logic.bas
 '==============================================================================
 
 

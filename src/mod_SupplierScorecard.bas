@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "mod_SupplierScorecard"
+Attribute VB_Name = "mod_SupplierScorecard"
 Option Explicit
 
 Private Const SHEET_SCORECARD As String = "SCORECARD_FOURNISSEURS"

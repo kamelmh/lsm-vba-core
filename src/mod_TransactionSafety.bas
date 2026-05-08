@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "mod_TransactionSafety"
+Attribute VB_Name = "mod_TransactionSafety"
 '==============================================================================
 ' mod_TransactionSafety.bas  -  ERP LSM v1.0.0
 ' Purpose: Transaction rollback and error recovery for atomic operations

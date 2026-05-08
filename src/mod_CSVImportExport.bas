@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "mod_CSVImportExport"
+Attribute VB_Name = "mod_CSVImportExport"
 Option Explicit
 
 Private Const CSV_EXT As String = "CSV Files (*.csv),*.csv"

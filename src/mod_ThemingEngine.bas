@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "mod_ThemingEngine"
+Attribute VB_Name = "mod_ThemingEngine"
 '==============================================================================
 ' mod_ThemingEngine.bas  -  ERP LSM v1.0.0
 ' Purpose: Professional UI theming engine for frmStockEntry
@@ -166,6 +166,7 @@ Public Sub ApplyTextboxTheme(ByRef frm As Object, ByVal ctrlName As String)
         .Font.Size = 10
         .TextAlign = fmTextAlignLeft
         .Height = 22
+        .Tag = CLR_INPUT_BORDER
     End With
 End Sub
 
@@ -519,6 +520,62 @@ Public Sub SetPlaceholderText(ByRef frm As Object)
         frm.txtPrixUnitaire.ForeColor = CLR_PLACEHOLDER
     End If
     
+    On Error GoTo 0
+End Sub
+
+'==============================================================================
+' VALIDATION FEEDBACK — inline error styling
+'==============================================================================
+Public Sub HighlightFieldError(ByRef ctrl As Object)
+    On Error Resume Next
+    ctrl.BorderColor = RGB(204, 0, 0)
+    ctrl.BackColor = RGB(255, 240, 240)
+    On Error GoTo 0
+End Sub
+
+Public Sub ClearFieldError(ByRef ctrl As Object)
+    On Error Resume Next
+    If TypeName(ctrl) = "TextBox" Or TypeName(ctrl) = "ComboBox" Then
+        ctrl.BorderColor = CLR_INPUT_BORDER
+        ctrl.BackColor = CLR_INPUT_BG
+    End If
+    On Error GoTo 0
+End Sub
+
+Public Sub ClearAllFieldErrors(ByRef frm As Object)
+    On Error Resume Next
+    Dim names As Variant
+    names = Array("TxtDate", "txtRefDoc", "txtQuantite", "txtPrixUnitaire", _
+                  "cmbTypeDoc", "cmbArticle", "cmbService", "cmbCategorie")
+    Dim i As Integer
+    For i = 0 To UBound(names)
+        If frm.Controls.Exists(names(i)) Then
+            Call ClearFieldError(frm.Controls(names(i)))
+        End If
+    Next i
+    On Error GoTo 0
+End Sub
+
+'==============================================================================
+' FOCUS EFFECTS — highlight active input border
+'==============================================================================
+Public Sub ApplyInputFocus(ByRef ctrl As Object)
+    On Error Resume Next
+    If TypeName(ctrl) = "TextBox" Or TypeName(ctrl) = "ComboBox" Then
+        ctrl.BorderColor = RGB(0, 102, 204)
+        ctrl.BackColor = RGB(248, 250, 255)
+    End If
+    On Error GoTo 0
+End Sub
+
+Public Sub ApplyInputBlur(ByRef ctrl As Object)
+    On Error Resume Next
+    If TypeName(ctrl) = "TextBox" Or TypeName(ctrl) = "ComboBox" Then
+        Dim origColor As Long
+        If IsNumeric(ctrl.Tag) Then origColor = CLng(ctrl.Tag) Else origColor = CLR_INPUT_BORDER
+        ctrl.BorderColor = origColor
+        ctrl.BackColor = CLR_INPUT_BG
+    End If
     On Error GoTo 0
 End Sub
 

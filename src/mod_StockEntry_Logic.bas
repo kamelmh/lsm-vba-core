@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "mod_StockEntry_Logic"
+Attribute VB_Name = "mod_StockEntry_Logic"
 '==============================================================================
 ' mod_StockEntry_Logic.bas  -  ERP LSM v1.0.0 (Refactored)
 ' Author   : LSM VBA Core | TAG1801 GSL | Public Sector 2026
@@ -629,8 +629,12 @@ Public Function AddLineToGrid(ByRef state As FormState) As Boolean
     Dim ropSeuil   As Double
     Dim rowIdx     As Integer
 
+    '- Init: Clear all field errors
+    Call mod_ThemingEngine.ClearAllFieldErrors(state.formRef)
+
     '- Guard 1: Date validation
     If Not mod_Utilities.IsValidDate(state.TransDate) Then
+        Call mod_ThemingEngine.HighlightFieldError(state.formRef.TxtDate)
         MsgBox "Format de date requis : JJ/MM/AAAA", vbExclamation
         state.formRef.TxtDate.SetFocus
         Exit Function
@@ -638,6 +642,7 @@ Public Function AddLineToGrid(ByRef state As FormState) As Boolean
 
     '- Guard 2: Document reference
     If Len(Trim(state.docRef)) = 0 Then
+        Call mod_ThemingEngine.HighlightFieldError(state.formRef.txtRefDoc)
         MsgBox "Le N° Reference est OBLIGATOIRE.", vbCritical
         state.formRef.txtRefDoc.SetFocus
         Exit Function
@@ -645,6 +650,7 @@ Public Function AddLineToGrid(ByRef state As FormState) As Boolean
 
     '- Guard 3: Article selection
     If Len(Trim(m_CurrentArticle)) = 0 Then
+        Call mod_ThemingEngine.HighlightFieldError(state.formRef.cmbArticle)
         MsgBox "Selectionnez un article.", vbExclamation
         state.formRef.cmbArticle.SetFocus
         Exit Function
@@ -658,6 +664,7 @@ Public Function AddLineToGrid(ByRef state As FormState) As Boolean
 
     '- Guard 5: Quantity valid
     If Not IsNumeric(state.qty) Then
+        Call mod_ThemingEngine.HighlightFieldError(state.formRef.txtQuantite)
         MsgBox "Quantite invalide.", vbCritical
         state.formRef.txtQuantite.SetFocus
         Exit Function
@@ -665,6 +672,7 @@ Public Function AddLineToGrid(ByRef state As FormState) As Boolean
 
     qty = CLng(state.qty)
     If qty <= 0 Then
+        Call mod_ThemingEngine.HighlightFieldError(state.formRef.txtQuantite)
         MsgBox "La quantite doit " & Chr(234) & "tre > 0.", vbCritical
         state.formRef.txtQuantite.SetFocus
         Exit Function
@@ -674,6 +682,7 @@ Public Function AddLineToGrid(ByRef state As FormState) As Boolean
     If m_IsBRMode Then
         state.unitPrice = state.formRef.txtPrixUnitaire.Value
         If Not IsNumeric(state.unitPrice) Or CDbl(mod_Utilities.SafeVal(state.unitPrice)) <= 0 Then
+            Call mod_ThemingEngine.HighlightFieldError(state.formRef.txtPrixUnitaire)
             MsgBox "Le Prix Unitaire est requis pour un Bon de R" & Chr(201) & "ception.", vbCritical
             state.formRef.txtPrixUnitaire.SetFocus
             Exit Function
@@ -809,8 +818,12 @@ Public Function CommitTransaction(ByRef state As FormState) As Boolean
         Exit Function
     End If
     
+    '- Init: Clear all field errors
+    Call mod_ThemingEngine.ClearAllFieldErrors(state.formRef)
+
     '- Guard: Service required
     If Len(Trim(state.Service)) = 0 Then
+        Call mod_ThemingEngine.HighlightFieldError(state.formRef.cmbService)
         MsgBox "SERVICE / FOURNISSEUR est requis.", vbExclamation
         state.formRef.cmbService.SetFocus
         Exit Function
@@ -818,6 +831,7 @@ Public Function CommitTransaction(ByRef state As FormState) As Boolean
     
     '- Guard: DocType required
     If Len(Trim(state.docType)) = 0 Then
+        Call mod_ThemingEngine.HighlightFieldError(state.formRef.cmbTypeDoc)
         MsgBox "Type de Document est requis.", vbExclamation
         state.formRef.cmbTypeDoc.SetFocus
         Exit Function

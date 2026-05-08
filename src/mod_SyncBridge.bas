@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "mod_SyncBridge"
+Attribute VB_Name = "mod_SyncBridge"
 Option Explicit
 
 ' Module-level state

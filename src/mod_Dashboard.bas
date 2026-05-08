@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "mod_Dashboard"
+Attribute VB_Name = "mod_Dashboard"
 Option Explicit
 
 '=======================================================================================

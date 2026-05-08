@@ -20,13 +20,18 @@
       <Module>mod_Reports.bas</Module>
       <Module>mod_ExportEngine.bas</Module>
       <Module>mod_Analysis.bas</Module>
+      <Module>mod_InventoryReconciliation.bas</Module>
+      <Module>mod_StockOutPredictor.bas</Module>
+      <Module>mod_SupplierScorecard.bas</Module>
+      <Module>mod_StockAging.bas</Module>
+      <Module>mod_DataValidator.bas</Module>
     </Category>
     <Category name="Demo &amp; Sample Data">
 
     </Category>
     <Category name="UI Framework">
       <Module>mod_ThemingEngine.bas</Module>
-      <Module>mod_UIEnhancements.bas</Module>
+      <Module>mod_UI_Setup.bas</Module>
       <Module>mod_Navigation.bas</Module>
       <Module>mod_Localization.bas</Module>
       <Module>frmStockEntry.frm</Module>
@@ -57,7 +62,7 @@
     <Module>mod_SupplierRegistry.bas</Module>
     <Module>mod_Procurement.bas</Module>
     <Module>MAIN_MACROS.bas</Module>
-    <Module>mod_UI_Setup.bas</Module>
+    <Module>mod_UIEnhancements.bas</Module>
     <Module>ThisWorkbook.cls</Module>
     <Document>ERP_Academie_v13_Master.xlsm</Document>
     <Document>ERP_Academie_v13_2.xlsm</Document>

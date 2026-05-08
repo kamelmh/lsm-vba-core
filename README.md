@@ -39,7 +39,7 @@ src/
 │   └── mod_ExportEngine.bas     # PDF export
 ├── UI Framework
 │   ├── mod_ThemingEngine.bas    # UI theming
-│   ├── mod_UIEnhancements.bas   # Hover effects, animations
+│   ├── mod_UI_Setup.bas         # Dashboard button creation
 │   ├── mod_Navigation.bas       # Sheet navigation
 │   ├── mod_Localization.bas     # Multi-language support
 │   └── frmStockEntry.frm        # Stock entry form

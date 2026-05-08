@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "mod_Analysis"
+Attribute VB_Name = "mod_Analysis"
 '==============================================================================
 ' MODULE: mod_Analysis
 ' PURPOSE: Contains macros for strategic inventory analysis (ABC, etc.).

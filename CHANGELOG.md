@@ -6,6 +6,38 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.4.0] — 2026-05-08
+
+### Added
+- `mod_UI_Setup.bas` — Programmatic dashboard button creation (16 buttons: stock entry, CSV, barcode, analysis modules, reports, KPIs)
+- Inline field validation — red border + light red background on invalid inputs (HighlightFieldError/ClearFieldError)
+- Type-to-search on `cmbArticle` dropdown (`fmStyleDropDownCombo`)
+- Focus effects — blue border + light blue background on Enter, reset on Exit
+
+### Changed
+- `mod_ThemingEngine.bas` — Added `ApplyInputFocus`, `ApplyInputBlur`, `HighlightFieldError`, `ClearFieldError`, `ClearAllFieldErrors`
+- `mod_StockEntry_Logic.bas` — Validation guards in `AddLineToGrid` and `CommitTransaction` call `HighlightFieldError` before `SetFocus`
+- `frmStockEntry.frm` — Hover effects on 6 form buttons (blue/green/red shifts), 8 Enter/Exit focus handlers
+- `README.md` — Architecture tree updated: `mod_UIEnhancements` → `mod_UI_Setup`
+- `lsm-public-spec.xml` — 5 analysis modules added, `mod_UIEnhancements` moved to Excluded (dead code), `mod_UI_Setup` added to UI Framework
+- `sanitize.ps1` — Include list updated: added `mod_UI_Setup.bas`, removed `mod_UIEnhancements.bas`
+
+### Removed
+- `mod_UIEnhancements.bas` — Dead code (386 lines, no callers) excluded from public release
+
+## [1.3.0] — 2026-05-08
+
+### Added
+- `mod_InventoryReconciliation.bas` — Physical vs system inventory comparison with variance analysis
+- `mod_StockOutPredictor.bas` — Average daily consumption + depletion date + CRITIQUE/ALERTE flags
+- `mod_SupplierScorecard.bas` — Volume score + rating → A-D classification with color-coded sheet
+- `mod_StockAging.bas` — Last movement → ACTIF/LENT/MORT categories with aging analysis
+- `mod_DataValidator.bas` — Integrity scan of MOUVEMENTS/ARTICLES/FOURNISSEURS with error report
+
+### Changed
+- Public source now includes 31 modules (30 .bas + 1 .frm)
+- CI runner fixed to `ubuntu-latest`
+
 ## [1.0.2] — 2026-05-08
 
 ### Added
@@ -94,5 +126,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - 8 non-numeric stock values (data issue)
 - 14 orphan modules (false positives — called from ACCUEIL buttons/ThisWorkbook/forms)
 
-[Unreleased]: https://github.com/kamelmh/lsm-vba-core/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/kamelmh/lsm-vba-core/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/kamelmh/lsm-vba-core/compare/v1.3.0...v1.4.0
+[1.3.0]: https://github.com/kamelmh/lsm-vba-core/compare/v1.0.2...v1.3.0
+[1.0.2]: https://github.com/kamelmh/lsm-vba-core/compare/v1.0.1...v1.0.2
+[1.0.1]: https://github.com/kamelmh/lsm-vba-core/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/kamelmh/lsm-vba-core/releases/tag/v1.0.0

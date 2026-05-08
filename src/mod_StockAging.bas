@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "mod_StockAging"
+Attribute VB_Name = "mod_StockAging"
 Option Explicit
 
 Private Const SHEET_AGING As String = "ANALYSE_VETUSTE"

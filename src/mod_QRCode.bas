@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "mod_QRCode"
+Attribute VB_Name = "mod_QRCode"
 '==============================================================================
 ' mod_QRCode.bas  |  ERP LSM v1.0.0
 ' Author: LSM VBA Core | Public Sector 2026

@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "mod_ReceiptTag"
+Attribute VB_Name = "mod_ReceiptTag"
 Option Explicit
 
 ' ============================================================

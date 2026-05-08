@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "mod_AuditTrail"
+Attribute VB_Name = "mod_AuditTrail"
 '=======================================================================================
 ' MODULE: mod_AuditTrail.bas
 ' PROJECT: ERP Acad" & Chr(233) & "mie v13

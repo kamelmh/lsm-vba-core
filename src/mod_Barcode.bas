@@ -1,4 +1,4 @@
-﻿Attribute VB_Name = "mod_Barcode"
+Attribute VB_Name = "mod_Barcode"
 Option Explicit
 
 Private Const BARCODE_SHEET As String = "STAGING_BUFFER"
