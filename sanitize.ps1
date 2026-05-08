@@ -32,6 +32,13 @@ $includeFiles = @(
     "mod_ReceiptTag.bas",
     "mod_Analysis.bas",
     "mod_DemoData.bas",
+    "mod_CSVImportExport.bas",
+    "mod_Barcode.bas",
+    "mod_InventoryReconciliation.bas",
+    "mod_StockOutPredictor.bas",
+    "mod_SupplierScorecard.bas",
+    "mod_StockAging.bas",
+    "mod_DataValidator.bas",
     "frmStockEntry.frm"
 )
 

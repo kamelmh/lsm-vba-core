@@ -1,4 +1,4 @@
-Attribute VB_Name = "mod_DemoData"
+﻿Attribute VB_Name = "mod_DemoData"
 '==============================================================================
 ' mod_DemoData.bas  -  ERP LSM v1.0.0
 ' Purpose: Generate realistic 38-day test dataset for thesis defense demo

@@ -1,4 +1,4 @@
-Attribute VB_Name = "mod_UIEnhancements"
+﻿Attribute VB_Name = "mod_UIEnhancements"
 '==============================================================================
 ' mod_UIEnhancements.bas  -  ERP LSM v1.0.0
 ' Purpose: Professional UI styling and visual enhancements for VBA forms

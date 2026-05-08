@@ -1,4 +1,4 @@
-Attribute VB_Name = "mod_Localization"
+﻿Attribute VB_Name = "mod_Localization"
 '=======================================================================================
 ' MODULE: mod_Localization.bas
 ' PROJECT: ERP Acad�mie v13

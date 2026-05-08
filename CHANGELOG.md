@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.0.2] — 2026-05-08
+
+### Added
+- `mod_CSVImportExport.bas` — CSV import/export for MOUVEMENTS, ARTICLES, FOURNISSEURS with quoted fields and delimiter auto-detect
+- `mod_Barcode.bas` — Keyboard-wedge barcode scanning with 12-article default mapping and STAGING_BUFFER-based custom map
+
+### Changed
+- CI workflow runner fixed to `ubuntu-latest`, `free-disk-space` step removed
+- Public source now includes 26 modules (25 .bas + 1 .frm)
+- All 26 sheets protected during build (previously had skip list)
+- Repository URL references updated to `kamelmh/lsm-vba-core`
+
 ## [1.0.1] — 2026-05-08
 
 ### Added
@@ -82,5 +94,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - 8 non-numeric stock values (data issue)
 - 14 orphan modules (false positives — called from ACCUEIL buttons/ThisWorkbook/forms)
 
-[Unreleased]: https://github.com/anomalyco/lsm-vba-core/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/anomalyco/lsm-vba-core/releases/tag/v1.0.0
+[Unreleased]: https://github.com/kamelmh/lsm-vba-core/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/kamelmh/lsm-vba-core/releases/tag/v1.0.0

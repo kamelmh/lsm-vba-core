@@ -1,4 +1,4 @@
-Attribute VB_Name = "mod_Forecasting"
+﻿Attribute VB_Name = "mod_Forecasting"
 '==============================================================================
 ' mod_Forecasting.bas  -  ERP LSM v1.0.0
 ' Purpose: Demand forecasting engine using Moving Average methods

@@ -176,6 +176,25 @@ try {
 }
 
 # ============================================================================
+# STEP 5b: Protect Sheets
+# ============================================================================
+
+Write-Host "[5b/8] Protecting sheets..." -ForegroundColor Yellow
+$pwd = if ($config) { $config.master_pwd } else { "[YOUR_MASTER_PASSWORD]" }
+$protCount = 0
+foreach ($ws in $wb.Sheets) {
+    if (-not $ws.ProtectContents) {
+        try {
+            $ws.Protect($pwd, $true, $true, $true, $true, $false, $false, $false, $false, $false, $false, $false, $false, $true, $true, $true)
+            $protCount++
+        } catch {
+            Write-Host "  Warning: Could not protect $($ws.Name)" -ForegroundColor Gray
+        }
+    }
+}
+Write-Host "  Protected $protCount sheets" -ForegroundColor Gray
+
+# ============================================================================
 # STEP 6: Save
 # ============================================================================
 

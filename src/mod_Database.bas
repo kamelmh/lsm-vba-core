@@ -1,4 +1,4 @@
-Attribute VB_Name = "mod_Database"
+﻿Attribute VB_Name = "mod_Database"
 '=======================================================================================
 ' MODULE: mod_Database.bas
 ' PROJECT: ERP Acad" & Chr(233) & "mie v13

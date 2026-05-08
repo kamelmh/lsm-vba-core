@@ -1,4 +1,4 @@
-Attribute VB_Name = "mod_SharedEnvironment"
+﻿Attribute VB_Name = "mod_SharedEnvironment"
 '==============================================================================
 ' mod_SharedEnvironment.bas  -  ERP LSM v1.0.0
 

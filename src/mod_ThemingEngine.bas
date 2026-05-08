@@ -1,4 +1,4 @@
-Attribute VB_Name = "mod_ThemingEngine"
+﻿Attribute VB_Name = "mod_ThemingEngine"
 '==============================================================================
 ' mod_ThemingEngine.bas  -  ERP LSM v1.0.0
 ' Purpose: Professional UI theming engine for frmStockEntry

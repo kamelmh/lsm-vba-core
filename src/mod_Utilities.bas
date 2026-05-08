@@ -1,4 +1,4 @@
-Attribute VB_Name = "mod_Utilities"
+﻿Attribute VB_Name = "mod_Utilities"
 '=======================================================================================
 ' MODULE: mod_Utilities.bas
 ' PROJECT: ERP Acad�mie v13

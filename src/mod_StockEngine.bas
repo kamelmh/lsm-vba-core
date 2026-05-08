@@ -1,4 +1,4 @@
-Attribute VB_Name = "mod_StockEngine"
+﻿Attribute VB_Name = "mod_StockEngine"
 '=======================================================================================
 ' MODULE: mod_StockEngine.bas
 ' PROJECT: ERP Acad" & Chr(233) & "mie v13

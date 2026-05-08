@@ -1,4 +1,4 @@
-Attribute VB_Name = "mod_ExportEngine"
+﻿Attribute VB_Name = "mod_ExportEngine"
 '==============================================================================
 ' MODULE: mod_ExportEngine.bas  |  ERP LSM v1.0.0
 ' Author: LSM VBA Core | Public Sector 2026

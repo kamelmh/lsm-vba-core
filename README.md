@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![VBA](https://img.shields.io/badge/VBA-Excel%202010%2B-green.svg)](https://docs.microsoft.com/en-us/office/vba/)
-[![Build](https://img.shields.io/badge/build-v1.0.0-orange.svg)](tools/build.ps1)
+[![CI Build](https://github.com/kamelmh/lsm-vba-core/actions/workflows/build.yml/badge.svg)](https://github.com/kamelmh/lsm-vba-core/actions/workflows/build.yml)
 
 ## Overview
 
@@ -50,7 +50,9 @@ src/
 │   ├── mod_AuditTrail.bas       # Audit logging
 │   ├── mod_ApprovalWorkflow.bas # Approval system
 │   ├── mod_QRCode.bas           # QR code generation
-│   └── mod_ReceiptTag.bas       # Receipt verification
+│   ├── mod_ReceiptTag.bas       # Receipt verification
+│   ├── mod_CSVImportExport.bas  # CSV import/export engine
+│   └── mod_Barcode.bas          # Keyboard-wedge barcode scanning
 └── Build Tools
     ├── build.ps1                # Clean-slate rebuild script
     ├── verify.ps1               # 5-stage verification suite
@@ -68,7 +70,7 @@ src/
 
 ```powershell
 # Clone the repository
-git clone https://github.com/anomalyco/lsm-vba-core.git
+git clone https://github.com/kamelmh/lsm-vba-core.git
 cd lsm-vba-core
 
 # Run the build script (creates a new .xlsm from source)

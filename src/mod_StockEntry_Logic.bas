@@ -1,4 +1,4 @@
-Attribute VB_Name = "mod_StockEntry_Logic"
+﻿Attribute VB_Name = "mod_StockEntry_Logic"
 '==============================================================================
 ' mod_StockEntry_Logic.bas  -  ERP LSM v1.0.0 (Refactored)
 ' Author   : LSM VBA Core | TAG1801 GSL | Public Sector 2026
