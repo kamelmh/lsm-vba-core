@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.0.1] — 2026-05-08
+
+### Added
+- `mod_Analysis.bas` — ABC classification wrapper module
+- `mod_DemoData.bas` — Sample datasets for public release, demonstrating 12-article catalog with stock movements
+
+### Changed
+- Public source now includes 24 modules (23 .bas + 1 .frm), up from 22 .bas + 1 .frm
+
 ## [1.0.0] — 2026-05-07
 
 ### Added
@@ -73,5 +82,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - 8 non-numeric stock values (data issue)
 - 14 orphan modules (false positives — called from ACCUEIL buttons/ThisWorkbook/forms)
 
-[Unreleased]: https://github.com/kamelmh/lsm-vba-core/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/kamelmh/lsm-vba-core/releases/tag/v1.0.0
+[Unreleased]: https://github.com/anomalyco/lsm-vba-core/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/anomalyco/lsm-vba-core/releases/tag/v1.0.0

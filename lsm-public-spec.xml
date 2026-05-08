@@ -19,6 +19,10 @@
       <Module>mod_Dashboard.bas</Module>
       <Module>mod_Reports.bas</Module>
       <Module>mod_ExportEngine.bas</Module>
+      <Module>mod_Analysis.bas</Module>
+    </Category>
+    <Category name="Demo &amp; Sample Data">
+
     </Category>
     <Category name="UI Framework">
       <Module>mod_ThemingEngine.bas</Module>

@@ -30,6 +30,8 @@ $includeFiles = @(
     "mod_ApprovalWorkflow.bas",
     "mod_QRCode.bas",
     "mod_ReceiptTag.bas",
+    "mod_Analysis.bas",
+    "mod_DemoData.bas",
     "frmStockEntry.frm"
 )
 

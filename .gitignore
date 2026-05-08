@@ -24,6 +24,9 @@ vbe-auto.log
 # State files
 vbe-auto.state.json
 
+# Windows shell
+desktop.ini
+
 # Personal data (never commit)
 erp-project-context.xml
 erp-admin-paths.xml
