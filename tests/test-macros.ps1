@@ -22,19 +22,17 @@ function Test-Macro {
     $status = "FAIL"
     $error = ""
     try {
-        $job = Start-Job -ScriptBlock {
-            param($xl, $m)
-            try { $xl.Run($m); return "OK" } catch { return $_.Exception.Message }
-        } -ArgumentList $excel, $Macro
-        
-        $completed = Wait-Job $job -Timeout ($TimeoutMs / 1000)
-        if ($completed) {
-            $output = Receive-Job $job
-            Remove-Job $job
-            if ($output -eq "OK") { $status = "PASS" } else { $status = "FAIL"; $error = $output }
-        } else {
-            Stop-Job $job -ErrorAction SilentlyContinue
-            Remove-Job $job -Force -ErrorAction SilentlyContinue
+        $result = $null
+        # COM objects can't cross PowerShell runspace boundaries — run inline
+        $completed = $true
+        try {
+            $result = $excel.Run($Macro)
+            $status = "PASS"
+        } catch {
+            $status = "FAIL"
+            $error = $_.Exception.Message
+        }
+        if ($sw.ElapsedMilliseconds -gt $TimeoutMs) {
             $status = "TIMEOUT"
             $error = "Exceeded ${TimeoutMs}ms"
         }
@@ -43,7 +41,7 @@ function Test-Macro {
         $error = $_.Exception.Message
     }
     $sw.Stop()
-    $allResults += [PSCustomObject]@{ Name = $Name; Status = $status; Error = $error; Ms = $sw.ElapsedMilliseconds }
+    $script:allResults += [PSCustomObject]@{ Name = $Name; Status = $status; Error = $error; Ms = $sw.ElapsedMilliseconds }
     return $status
 }
 
@@ -91,7 +89,7 @@ Public Function Test_GetSkuMetrics() As String
 End Function
 
 Public Function Test_GenerateVerifyCode() As String
-    Test_GenerateVerifyCode = mod_Utilities.GenerateVerifyCode()
+    Test_GenerateVerifyCode = mod_Utilities.GenerateVerifyCode("TEST-DOC-001")
 End Function
 
 Public Function Test_SafeVal() As Double

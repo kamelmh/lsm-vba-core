@@ -81,18 +81,18 @@ Private Sub SeedArticles()
     ' 12 articles with realistic initial stock
     Dim articles As Variant
     articles = Array( _
-        Array("ART-001", "[ARTICLE_DESC] G030 (noir)", "Informatique", "F-001", 500, 4500, 200, "A", "Fournitures d'impression"), _
+        Array("ART-001", "[ARTICLE_DESC] G030 (noir)", "Informatique", "F-001", 500, 4500, 200, "A", "[CATEGORY]"), _
         Array("ART-002", "[ARTICLE_DESC] A4 80g/m2", "Fournitures Bureau", "F-002", 800, 850, 100, "A", "Papeterie standard"), _
         Array("ART-003", "[ARTICLE_DESC] A3 80g/m2", "Fournitures Bureau", "F-002", 400, 1200, 80, "B", "Papier grand format"), _
         Array("ART-004", "Boite archives carton", "Admin", "F-003", 300, 350, 50, "B", "Archivage physique"), _
         Array("ART-005", "[ARTICLE_DESC] de bureau", "Fournitures Bureau", "F-003", 150, 280, 30, "C", "Petit materiel"), _
         Array("ART-006", "[ARTICLE_DESC] bille boite/50", "Fournitures Bureau", "F-002", 500, 420, 60, "B", "Consommables ecriture"), _
         Array("ART-007", "[ARTICLE_DESC] grand format 5m", "Admin", "F-003", 200, 680, 40, "C", "[ARTICLE_DESC]s officiels"), _
-        Array("ART-008", "Encre tampon", "Fournitures Bureau", "F-001", 100, 180, 20, "C", "Consommables tampon"), _
-        Array("ART-009", "Sous-chemise carton", "Fournitures Bureau", "F-002", 600, 95, 70, "B", "Chemises classement"), _
-        Array("ART-010", "Chemise cartonnee", "Fournitures Bureau", "F-002", 450, 120, 50, "B", "Chemises documents"), _
-        Array("ART-011", "Rouleau papier fax", "Informatique", "F-001", 80, 550, 15, "C", "Consommables fax"), _
-        Array("ART-012", "Marqueur permanent noir", "Fournitures Bureau", "F-003", 350, 230, 40, "C", "Marquage etatiquetage") _
+        Array("ART-008", "[ARTICLE_DESC]", "Fournitures Bureau", "F-001", 100, 180, 20, "C", "Consommables tampon"), _
+        Array("ART-009", "[ARTICLE_DESC] carton", "Fournitures Bureau", "F-002", 600, 95, 70, "B", "Chemises classement"), _
+        Array("ART-010", "[ARTICLE_DESC]ee", "Fournitures Bureau", "F-002", 450, 120, 50, "B", "Chemises documents"), _
+        Array("ART-011", "[ARTICLE_DESC]", "Informatique", "F-001", 80, 550, 15, "C", "Consommables fax"), _
+        Array("ART-012", "[ARTICLE_DESC] noir", "Fournitures Bureau", "F-003", 350, 230, 40, "C", "Marquage etatiquetage") _
     )
     
     Dim i As Long

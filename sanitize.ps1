@@ -56,6 +56,13 @@ $sanitizations = @(
     @{ Pattern = 'Agrafeuse'; Replacement = '[ARTICLE_DESC]' },
     @{ Pattern = 'Stylos'; Replacement = '[ARTICLE_DESC]' },
     @{ Pattern = 'Registre'; Replacement = '[ARTICLE_DESC]' },
+    @{ Pattern = 'Encre tampon'; Replacement = '[ARTICLE_DESC]' },
+    @{ Pattern = 'Sous-Chemise'; Replacement = '[ARTICLE_DESC]' },
+    @{ Pattern = 'Sous-chemise carton'; Replacement = '[ARTICLE_DESC]' },
+    @{ Pattern = 'Chemise cartonn'; Replacement = '[ARTICLE_DESC]' },
+    @{ Pattern = 'Rouleau papier fax'; Replacement = '[ARTICLE_DESC]' },
+    @{ Pattern = 'Marqueur permanent'; Replacement = '[ARTICLE_DESC]' },
+    @{ Pattern = 'Fournitures d''impression'; Replacement = '[CATEGORY]' },
     @{ Pattern = 'ENAP Alger'; Replacement = '[SUPPLIER_1]' },
     @{ Pattern = 'Bureautique Oran'; Replacement = '[SUPPLIER_2]' },
     @{ Pattern = 'Bureau Plus'; Replacement = '[SUPPLIER_3]' },
@@ -90,6 +97,9 @@ foreach ($f in $includeFiles) {
     # Set default password placeholder
     $content = $content -replace 'MASTER_PWD\s*=\s*".*?"', 'MASTER_PWD = "[YOUR_MASTER_PASSWORD]"'
     $content = $content -replace 'MASTER_PWD\s*=\s*''[^'']*''', 'MASTER_PWD = ''[YOUR_MASTER_PASSWORD]'''
+    
+    # Fix split-string institution name using Chr(201) for É
+    $content = $content -replace '"Direction de l.*?" & Chr\(201\) & "ducation[^"]*"', '"[ORGANIZATION]"'
     
     $content | Out-File $dstPath -Encoding UTF8 -NoNewline
     $lineCount = ($content -split "`n").Count

@@ -232,7 +232,7 @@ Private Sub LoadArticleComboBox(ByVal filterCat As String, ByRef state As FormSt
     If wsArt Is Nothing Then
         state.formRef.cmbArticle.AddItem "ART-001 | Papier A4"
         state.formRef.cmbArticle.AddItem "ART-002 | Papier A3"
-        state.formRef.cmbArticle.AddItem "ART-003 | Sous-Chemise"
+        state.formRef.cmbArticle.AddItem "ART-003 | [ARTICLE_DESC]"
         Exit Sub
     End If
 

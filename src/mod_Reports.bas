@@ -31,7 +31,7 @@ Public Sub GenerateMonthlyReport(Optional ByVal rptMonth As Integer = 0)
     
     With wsReport
         .Range("A1").Value = "RAPPORT MENSUEL - " & mod_Config.SYS_TITLE
-        .Range("A2").Value = "Direction de l'" & Chr(201) & "ducation - [CITY]"
+        .Range("A2").Value = "[ORGANIZATION]"
         .Range("A3").Value = "Mois: " & Format(Date, "mmmm yyyy")
         .Range("A1").Font.Bold = True
         .Range("A1").Font.Size = 14

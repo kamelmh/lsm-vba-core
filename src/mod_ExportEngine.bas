@@ -233,7 +233,7 @@ Private Function PopulateTemplateBon(ByVal docRef As String, _
         
         ' ROW 2: Direction (bilingual FR/AR)
         .Range("A" & r & ":G" & r).Merge
-        .Cells(r, 1).Value = "Direction de l'" & Chr(201) & "ducation  " & _
+        .Cells(r, 1).Value = "[ORGANIZATION]" & _
                              Chr(8212) & "  [CITY]  |  " & _
                              Chr(1605) & Chr(1583) & Chr(1610) & Chr(1585) & _
                              Chr(1610) & Chr(1577) & " " & Chr(1575) & _
